@@ -37,8 +37,8 @@ function scrollToSection(section) {
 function navClick (evt) {
     if (evt.target.nodeName === 'LI') {  // ← verifies target is desired element
         // scrollToSection(document.queryselector(evt.target.);
-        const sectionID = '#' + evt.target.textContent.toLowerCase();
-        scrollToSection(document.querySelector(sectionID));
+        const sectionID = evt.target.getAttribute('data-sec');
+        scrollToSection(document.getElementById(sectionID));
     }
 }
 
@@ -50,21 +50,44 @@ function navClick (evt) {
 */
 
 // build the nav
-const fragment = document.createDocumentFragment();
-for (section of sections){
-    const newList = document.createElement('li');
-    newList.textContent = section.getAttribute('data-nav');
-    const rect = section.getBoundingClientRect();
-    console.log(rect.top);
-    newList.classList.add('menu__link');
-    fragment.appendChild(newList);
+function buildNavMenu () {
+    const fragment = document.createDocumentFragment();
+    let n = 1;
+    for (section of sections){
+        const newList = document.createElement('li');
+        newList.textContent = section.getAttribute('data-nav');
+        newList.setAttribute ('data-sec', 'section' + n);
+        n++;
+        const rect = section.getBoundingClientRect();
+        newList.classList.add('menu__link');
+        fragment.appendChild(newList);
+    }
+    navBarElement.appendChild(fragment);
+    navBarElement.addEventListener('click', navClick);
 }
 
-navBarElement.appendChild(fragment);
-navBarElement.addEventListener('click', navClick);
-
+buildNavMenu();
 // Add class 'active' to section when near top of viewport
+function setActiveSection (sect) {
+    const lastActive = document.querySelector('.active__section');
+    lastActive.classList.toggle('active__section');
+    sect.classList.toggle('active__section');
+    console.log(sect);
+}
 
+function checkActiveSection() {
+    let activeSection = {};
+    let sectionHeight = sections[1].getBoundingClientRect().height;
+    for (section of sections) {
+        if (Math.abs(section.getBoundingClientRect().top) < (sectionHeight/2)) {
+            setActiveSection(section);
+        }
+    }
+
+}
+window.addEventListener('scroll' ,function(e){
+    setTimeout(checkActiveSection,1000);
+});
 
 // Scroll to anchor ID using scrollTO event
 
