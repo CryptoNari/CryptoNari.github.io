@@ -14,5 +14,5 @@ project to an interactive one through manipulation of the DOM.
 * Active sections distinguish from non-active using viewport upon scrolling
 
 ## Links to Project
-[Project Specification](https://review.udacity.com/#!/rubrics/2658/view "Project Rubric")
-[Demo Site](https://CryptoNari.github.io/C2-landing-page/index.html)
+* [Project Specification](https://review.udacity.com/#!/rubrics/2658/view "Project Rubric")
+* [Demo Site](https://CryptoNari.github.io/C2-landing-page/index.html)
