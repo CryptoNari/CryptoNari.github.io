@@ -70,10 +70,18 @@ section {
     text-align: right;
     display: flex;
     justify-content: space-around;
+    color: #000;
 }
 
 .navbar__menu li {
     display: inline-block;
+}
+
+.navbar__menu .menu__link:hover,
+.active__nav {
+    background: #333;
+    color: #fff;
+    transition: ease 0.3s all;
 }
 
 .navbar__menu .menu__link {
@@ -83,13 +91,7 @@ section {
     padding-bottom: 1em; */
     font-weight: bold;
     text-decoration: none;
-    color: #000;
-}
 
-.navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
 }
 
 /* Header Styles */
